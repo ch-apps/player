@@ -11,3 +11,4 @@ It works very simple - in a similar way any other multimedia player does - just 
 1. Simply download and copy the repository into your local disk (anywhere you like - e.g. *C:\\ch-apps\\player\\* )
 1. Run the player by opening *index.html* page in your preffered web browser (double-clicking it should launch it in default browser on most systems)
 ## Screenshot
+## Version History
