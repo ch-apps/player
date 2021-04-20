@@ -1,5 +1,5 @@
 # Cock Hero Player
-Browser based application that provides an universal platform for easy creation and playback of https://www.cockhero.info custom games.
+Browser based application that provides an universal platform for easy creation and playback of [Cock Hero](https://www.cockhero.info) custom games.
 It works very simple - in a similar way any other multimedia player does - just put your favorite video, music and beats into playlist and play them synchronized.
 ## Key Features
 * JavaScript enabled local HTML page (runable under CHROME, FIREFOX or EDGE)
