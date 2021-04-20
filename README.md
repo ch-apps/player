@@ -9,5 +9,5 @@ It works very simple - in a similar way any other multimedia player does - just 
 * Supports playlists (share created games with the community)
 ## Installation
 1. Simply download and copy the repository into your local disk (anywhere you like - e.g. *C:\\ch-apps\\player\\* )
-1. Run the player by opening the *index.html* page in your preffered web browser (double-clicking it should open it in default browser on most systems)
+1. Run the player by opening *index.html* page in your preffered web browser (double-clicking it should launch it in default browser on most systems)
 ## Screenshot
