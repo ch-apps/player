@@ -1,4 +1,3 @@
-0.2.a	- First public release (GitHub)
 WISH-LIST
 	- Advanced looping and chaining logic (video drives timing/looping, audio drives timing/looping, independent playback)
 	- Security and Error/ Exception handling and source code clean-up
@@ -11,8 +10,11 @@ WISH-LIST
 			- Efficient BEAT mapping to music (to produce JSON file) something like BeatMeter Generator
 		- Sample files
 
-0.1.g	Displaying messages
+0.3	Displaying messages
 	- Display TEXT MESSAGES together with beats as a part of beatmeter (e.g. pattern change announcement, instructions. etc.)
+
+0.2	First public release (GitHub)
+
 0.1.f	Support of PLAYLIST
 	- Open (and Edit and Save in the future) of Playlist file with ready to play arrangements (stored as JSON file)
 0.1.e	Beat track auto generator
