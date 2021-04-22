@@ -1,0 +1,12 @@
+{
+"info": "<b>INTRO PLAYLIST</b></br>This is very simple introduction playlist. It demonstrates how easy it is to load whole CockHero game with multiple levels / sessions at once.",
+"videoFilesURL": [
+	"./AV_MEDIA/VIDEO/Intro.mp4"
+],
+"audioFilesURL": [
+	"./AV_MEDIA/AUDIO/Intro/Intro.mp3"
+],
+"beatFilesURL": [
+	"./AV_MEDIA/AUDIO/Intro/Intro.js"
+]
+}

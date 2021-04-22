@@ -1,0 +1,42 @@
+0.2.a	- First public release (GitHub)
+WISH-LIST
+	- Advanced looping and chaining logic (video drives timing/looping, audio drives timing/looping, independent playback)
+	- Security and Error/ Exception handling and source code clean-up
+	- Add more content
+ 		- Documentation
+			- Usage
+			- Content Creation How-to
+		- Supporting utilities [utilities section]
+			- BEAT auto-generator (based on BPM and beat-patterns) 
+			- Efficient BEAT mapping to music (to produce JSON file) something like BeatMeter Generator
+		- Sample files
+
+0.1.g	Displaying messages
+	- Display TEXT MESSAGES together with beats as a part of beatmeter (e.g. pattern change announcement, instructions. etc.)
+0.1.f	Support of PLAYLIST
+	- Open (and Edit and Save in the future) of Playlist file with ready to play arrangements (stored as JSON file)
+0.1.e	Beat track auto generator
+	- Generate BEAT data based on song's BPM only (when customized data file with beats is not available)
+0.1.d	Multiple files chaining
+	- Multiple files selection allowed
+	- Chain multiple files (aka playlist feature)	
+	- Basic track dependency (chaining) logic (video drives timing, audio plays independently, beats track locked to audio track)
+0.1.c	Player layout designed
+	- Colors, styles and layout
+	- Project / web application directory structure set (separation of styles, scripts, html, assets and media content)
+0.1.b	Simple "playable" release
+	- Custom content (AUDIO, VIDEO) to play upload feature (single file only - no chaining)
+	- Custom BEAT data file (JSON) to visualize beatmeter 
+	- Full screen option
+	- Volume-mix sliders (set-up audio, video and beat click volumes independently) 
+0.1.a	Initial proof of concept
+
+
+	- Intro video/audio to bundle with
+		After Effects Templates tips:
+			https://motionarray.com/after-effects-templates/golden-particles-logo-v2-780600
+			https://motionarray.com/after-effects-templates/elegant-particle-logo-34471
+			https://motionarray.com/after-effects-templates/glitch-typographic-opener-476682
+			https://motionarray.com/after-effects-templates/colorful-glitch-logo-842933
+		Blender
+			https://www.youtube.com/watch?v=Jwye2I3s97I

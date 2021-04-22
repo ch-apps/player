@@ -10,5 +10,8 @@ It works very simple - in a similar way any other multimedia player does - just 
 ## Installation
 1. Simply download and copy the repository into your local disk (anywhere you like - e.g. *C:\\ch-apps\\player\\* )
 1. Run the player by opening *index.html* page in your preffered web browser (double-clicking it should launch it in default browser on most systems)
+1. Load your playlist or arrange your own game
+   * How to load a playlist: click 2nd icon "Load Playlist" in TOP LEFT menu and open your playlist file. Sample playlist is included: *.\\AV_MEDIA\\IntroPlaylist.json*
+   * How to arrange own game: click "+" icon in BOTTOM menu (video, audio and beat tracks) and add your media files to be played in sync
 ## Screenshot
-## Version History
+![Cock Hero Player screenshot](/images/screenshot.jpg)

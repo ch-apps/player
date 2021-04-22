@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<link rel="stylesheet" href="./css/default.css">
+	<script type="text/javascript" src="./scripts/lib/font-awesome/fa_all.min.js"></script>	<!-- font-awesome icons (https://fontawesome.com/icons) -->
+	<script type="text/javascript" src="./scripts/beatPatterns.js"></script>
+</head>
+
+<title>Cock Hero Player</title>
+
+<body>
+
+<div id="parent">
+
+	<div id="config_container">
+	  
+	  <div id="chLOGO" class="ch-logo">
+		 <img src="./images/CH_Player_LOGO.gif" alt="CH LOGO"> 
+		 <span>Version 0.2</span>
+	  </div>
+	  
+	  <div id="confASSETS" class="configuration-assets">
+		<p id="playerInfoBoard">
+			Application provides an universal platform for easy creation and playback of <a href="https://www.cockhero.info">Cock Hero</a> custom games.</br>
+			It works very simple - in a similar way any other multimedia player does - just put your favorite video, music and beats into playlist and play them synchronized.</br>
+			Get it on <a href="https://github.com/ch-apps/player">GitHub</a>
+		</p>
+	  </div>
+	</div>
+
+	<div id="leftMenu_container">
+		<i class='playlist-item-icon fas fa-bars' title="MENU"></i>
+		<label for="flPLLST"><i class='menu-item fas fa-upload' title="Load Playlist"></i></label>
+		<input type="file" name="files[]" class="file_playlist" id='flPLLST' accept=".json" onchange="enqueuePlaylist(this)">
+		<i class='menu-item fas fa-edit' onclick="notImplementedMessage()" title="Edit Playlist"></i>
+		<i class='menu-item fas fa-download' onclick="notImplementedMessage()" title="Save Playlist"></i>
+		<i class='menu-item fas fa-palette' onclick="notImplementedMessage()" title="Customize Colors"></i>
+		<i class='menu-item fas fa-heartbeat' onclick="notImplementedMessage()" title="Customize Beatmeter"></i>
+		<i class='menu-item fas fa-sliders-h' onclick="notImplementedMessage()" title="Adjust Mixing Logic"></i>
+		<i class='menu-item fas fa-cogs' onclick="notImplementedMessage()" title="Other Configuration Options"></i>
+	</div>
+ 	
+	<div id="chp_container">
+	  <div class="button-fullscreen" id="btnFS" onclick="goFullScreen()">
+		<i id="iconExpand" class='fas fa-expand-arrows-alt' style="display: block"></i>
+		<i id="iconCompress"class='fas fa-compress-arrows-alt' style="display: none"></i>
+	  </div>
+	  
+	  <div class="all-volumes" id="btVLM">
+		<i id='volVIDEO' class='fas fa-video'></i>&nbsp;&nbsp;<input type="range" min="0" max="1" value="0.8" step="0.01" class="slider" id="myVideVolume" onchange="changeVolume(this.value, 'myvideo')"><br>
+		<i id='volAUDIO' class='fas fa-music'></i>&nbsp;&nbsp;<input type="range" min="0" max="1" value="0.8" step="0.01" class="slider" id="myAudioVolume" onchange="changeVolume(this.value, 'myaudio')"><br>
+		<i id='volBEAT' class='fas fa-drum'></i>&nbsp;&nbsp;<input type="range" min="0" max="1" value="1" step="0.01" class="slider" id="myClickVolume" onchange="changeVolume(this.value, 'clickSound')">
+	  </div>
+	  
+	  <video id="myvideo" class="videoInsert" onplay="videoStarted()" onpause="videoPaused()" onended="forceSkipAudioToVideoSync = true; mediaNext('vdSRC', 'myvideo', 'video');" controls> <!-- https://www.w3schools.com/tags/ref_av_dom.asp -->
+		<source src="" id="vdSRC" type="video/mp4" onloadstart="this.volume=0.8"/> Your browser does not support the video tag.
+	  </video>
+	  <audio id="myaudio" onended="mediaNext('adSRC', 'myaudio', 'audio')">
+		<source src="" id="adSRC" type="audio/mpeg" onloadstart="this.volume=0.8" preload="metadata"/>
+	  </audio>
+	  <audio id="clickSound">
+		<source src="./sounds/click.mp3" id="btSRC" type="audio/mpeg" onloadstart="this.volume=1">
+	  </audio>
+	  
+	  <canvas class="beat-meter-container" id="my_canvas"></canvas>
+	</div>
+
+</div>
+
+	<div id="files_container">
+		<!-- VIDEO -->
+		<div class="playlist-container" id="pllstCNTNR"> 
+			<div class="playlist-item-icon" id="pllstItmIcn">
+				<i class='fas fa-video'></i>
+			</div>
+			<div class="playlist-insert" id="pllstInsrtVIDEO">
+				<!-- WILL BE UPDATED BY JAVASCRIPT -->
+			</div>
+			<div class="playlist-item-borderless">
+				<label for="flMLTVD" class="custom-file-upload"><i class='fas fa-plus-square'></i></label>
+				<input type="file" name="files[]" class="file_multi_video" id='flMLTVD' accept="video/*" onchange="enqueueMedia(this, 'vdSRC', 'myvideo', 'pllstInsrtVIDEO', 'video')" multiple>
+			</div>
+		</div>
+		<!-- AUDIO -->
+		<div class="playlist-container">
+			<div class="playlist-item-icon">
+				<i class='fas fa-music'></i>
+			</div>		
+			<div class="playlist-insert" id="pllstInsrtAUDIO">
+				<!-- WILL BE UPDATED BY JAVASCRIPT -->
+			</div>
+			<div class="playlist-item-borderless">
+				<label for="flMLTAD" class="custom-file-upload"><i class='fas fa-plus-square'></i></label>
+				<input type="file" name="files[]" class="file_multi_audio" id='flMLTAD' accept="audio/*" onchange="enqueueMedia(this, 'adSRC', 'myaudio', 'pllstInsrtAUDIO', 'audio')" multiple>
+			</div>
+		</div>
+		<!-- BEATS -->
+		<div class="playlist-container">
+			<div class="playlist-item-icon">
+				<i class='fas fa-drum'></i>
+			</div>
+			<div class="playlist-insert" id="pllstInsrtBEATS">
+				<!-- WILL BE UPDATED BY JAVASCRIPT -->
+			</div>
+			<div class="playlist-item-borderless">
+				<label for="flMLTBT" class="custom-file-upload"><i class='fas fa-plus-square'></i></label>
+				<input type="file" name="files[]" class="file_multi_beat" id='flMLTBT' accept=".json, .js" onchange="enqueueBeat(this)" multiple>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript" src="./scripts/ch_player.js"></script> <!-- CH Player main library -->
+
+</body>
+</html>
