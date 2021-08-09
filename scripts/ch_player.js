@@ -377,6 +377,9 @@ function animate() {
 
 		//loop throug the beats array
 		//console.log("DEBUG: audioTrack " + actualTrack["audio"] + ", nearestBeatIndex " + nearestBeatIndex + ", actual time " + actualTime);
+		//console.log("DEBUG: NearestBeatIndex Time: " + mediaTracks["beat"][actualTrack["audio"]].beatData.video[nearestBeatIndex].time);
+		//console.log("DEBUG: Actual Time with Latency: " + actualTime+latency);
+		//console.log("DEBUG: All Beats Played: " + allBeatsPlayed);
 		if (mediaTracks["beat"][actualTrack["audio"]].beatData.video[nearestBeatIndex].time < actualTime+latency && !allBeatsPlayed) {
 			// Play BEAT SOUND
 			//playBeatSound();
