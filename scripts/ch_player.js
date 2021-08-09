@@ -260,17 +260,7 @@ function mediaNext(sourceElementId, mediaElementID, mediaType) {
 	}
 	if (mediaType === 'audio') {
 		nearestBeatIndex = 0;
-	}
-	setMediaSource (sourceElementId, mediaElementID, mediaTracks[mediaType][actualTrack[mediaType]].source, true);
-	change_time_state = true;
-}
-
-function videoPrev(sourceElementId, mediaElementID, mediaType) {
-	if (actualTrack[mediaType] > 0) {
-		actualTrack[mediaType] -= 1;
-	}
-	if (mediaType === 'audio') {
-		nearestBeatIndex = 0;
+		allBeatsPlayed = false;
 	}
 	setMediaSource (sourceElementId, mediaElementID, mediaTracks[mediaType][actualTrack[mediaType]].source, true);
 	change_time_state = true;
