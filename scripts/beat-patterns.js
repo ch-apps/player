@@ -1,4 +1,8 @@
-patterns = [{
+/**
+ * Functions that generate beat data based on predefined patterns
+ */
+
+var patterns = [{
 	"name": "1---",
 	"barsOccupied": 1,
 	"notesPerBar": 4,
