@@ -93,7 +93,7 @@ function animate() {
 		// draw the ring
 		actualTime = document.getElementById("myaudio").currentTime;
 
-		if (mediaTracks["beat"][actualTrack["audio"]].beatData.video[0].time 			< actualTime+1.2*queueTime && mediaTracks["beat"][actualTrack["audio"]].beatData.video[mediaTracks["beat"][actualTrack["audio"]].beatData.video.length-1].time+0.2*queueTime > actualTime) { // wait for the time just before first beat appears and show it until the last beat disappears
+		if (mediaTracks["beat"][actualTrack["audio"]].beatData.video[0].time < actualTime+1.2*queueTime && mediaTracks["beat"][actualTrack["audio"]].beatData.video[mediaTracks["beat"][actualTrack["audio"]].beatData.video.length-1].time+0.2*queueTime > actualTime) { // wait for the time just before first beat appears and show it until the last beat disappears
 			c.strokeStyle = 'rgba(255,0,0,0.75)';
 			c.lineWidth = container.lineWidth;
 			c.beginPath();
@@ -122,15 +122,15 @@ function animate() {
 				allBeatsPlayed = true;
 			}
 		}
-		i = nearestBeatIndex;
+        //draw the circles
+        i = nearestBeatIndex;
 		while (mediaTracks["beat"][actualTrack["audio"]].beatData.video[i].time <  actualTime+queueTime && !allBeatsPlayed) {
-		//draw the circles
-		c.fillStyle = 'rgba(255,0,0,0.75)';
-		c.beginPath();
-		c.arc((mediaTracks["beat"][actualTrack["audio"]].beatData.video[i].time-actualTime)*(0.7*container.width/queueTime)+0.3*container.width, container.height/2, (container.height-2*container.lineWidth)/2, 0, Math.PI * 2, true);
-		c.fill();
-		i++;
-		if ( !(i<mediaTracks["beat"][actualTrack["audio"]].beatData.video.length) ) break;
+            c.fillStyle = 'rgba(255,0,0,0.75)';
+            c.beginPath();
+            c.arc((mediaTracks["beat"][actualTrack["audio"]].beatData.video[i].time-actualTime)*(0.7*container.width/queueTime)+0.3*container.width, container.height/2, (container.height-2*container.lineWidth)/2, 0, Math.PI * 2, true);
+            c.fill();
+            i++;
+            if ( !(i<mediaTracks["beat"][actualTrack["audio"]].beatData.video.length) ) break;
 		}
 	}
   requestAnimationFrame(animate);

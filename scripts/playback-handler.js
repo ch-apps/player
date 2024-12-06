@@ -16,10 +16,30 @@ function changeVolume(amount, id) {
 function videoStarted() {
     var myvideo = document.getElementById("myvideo");
     var myaudio = document.getElementById("myaudio");
+    // handle start-time and stop-time (if provided for the video)
+    const [ , paramString ] = mediaTracks["video"][actualTrack["video"]].source.split( '?' );
+    const params = new URLSearchParams( paramString ); // return type is Array of Strings
+    var paramStart = 0;
+    if (params.has('start')) {
+        paramStart = Number(params.get('start'));
+        if (myvideo.currentTime < paramStart) {
+            myvideo.currentTime = paramStart;
+        }
+    }
+    if (params.has('stop')) {
+        myvideo.addEventListener("timeupdate", function(){
+            if (this.currentTime >=  Number(params.get('stop'))) {
+                //forceSkipAudioToVideoSync = true;
+                //mediaNext('vdSRC', 'myvideo', 'video');
+                const endedEvent = new Event('ended');
+                this.dispatchEvent(endedEvent);
+            }
+        });
+   }
     //if(change_time_state){
     if (!forceSkipAudioToVideoSync) { //!forceSkipAudioToVideoSync
         //myaudio.currentTime = myvideo.currentTime;
-        myaudio.currentTime = myvideo.currentTime - myaudio.duration*Math.floor(myvideo.currentTime/myaudio.duration);		// what if the video is longer then audio -> loop the audio then
+        myaudio.currentTime = (myvideo.currentTime - paramStart) - myaudio.duration*Math.floor(myvideo.currentTime/myaudio.duration);		// what if the video is longer then audio -> loop the audio then
         //console.log("DEBUG video time: " + myvideo.currentTime + ", audio time" + myaudio.currentTime);
         nearestBeatIndex = 0;
         clearTimeout(scheduledBeatSound);
@@ -31,7 +51,7 @@ function videoStarted() {
             scheduledBeatSound = setTimeout(playBeatSound, (mediaTracks["beat"][actualTrack["audio"]].beatData.video[nearestBeatIndex].time - (myaudio.currentTime+latency))*1000);
         }
         allBeatsPlayed = false;
-        change_time_state = false;
+        //change_time_state = false;
     //}
     }
     myaudio.play();
@@ -43,19 +63,21 @@ function videoPaused() {
     var myaudio = document.getElementById("myaudio");
     myaudio.pause();
     clearTimeout(scheduledBeatSound);
-    change_time_state = true;
+    //change_time_state = true;
 }
 
 function mediaNext(sourceElementId, mediaElementID, mediaType) {
-    if (mediaTracks[mediaType].length > actualTrack[mediaType]+1) {	//if it is already the last track, there is no next one
+    if (mediaTracks[mediaType].length > actualTrack[mediaType]+1) {	//if it is already the last track, there is no next one so start from beginning
         actualTrack[mediaType] += 1;
+    } else {
+        actualTrack[mediaType] = 0;
     }
     if (mediaType === 'audio') {
         nearestBeatIndex = 0;
         allBeatsPlayed = false;
     }
     setMediaSource (sourceElementId, mediaElementID, mediaTracks[mediaType][actualTrack[mediaType]].source, true);
-    change_time_state = true;
+    //change_time_state = true;
 }
 
 function mediaSpec(trackNumber, sourceElementId, mediaElementID, playlistElementID, mediaType, startToPlay = false) {
@@ -65,7 +87,7 @@ function mediaSpec(trackNumber, sourceElementId, mediaElementID, playlistElement
             nearestBeatIndex = 0;
         }
         setMediaSource (sourceElementId, mediaElementID, mediaTracks[mediaType][actualTrack[mediaType]].source, startToPlay);
-        change_time_state = true;
+        //change_time_state = true;
     }
 }
 

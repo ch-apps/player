@@ -103,7 +103,7 @@ function mediaDel(trackNumber, sourceElementId, mediaElementID, playlistElementI
 			} else {
 				setMediaSource (sourceElementId, mediaElementID, mediaTracks[mediaType][actualTrack[mediaType]].source, true);
 			}
-			change_time_state = true;
+			//change_time_state = true;
 		}
 		refreshMediaPlayList(mediaTracks[mediaType], sourceElementId, mediaElementID, playlistElementID, mediaType);
 	}

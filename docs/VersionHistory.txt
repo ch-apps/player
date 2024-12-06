@@ -10,8 +10,12 @@ WISH-LIST
 			- Efficient BEAT mapping to music (to produce JSON file) something like BeatMeter Generator
 		- Sample files
 
-0.3	Displaying messages
+0.3.1	Displaying messages
 	- Display TEXT MESSAGES together with beats as a part of beatmeter (e.g. pattern change announcement, instructions. etc.)
+
+0.3.0	Video start/stop time support
+	- Start-time and stop-time support for video in playlist files (enables to play only time-defined clips out of the full-length videos. Just add ?start=12&stop=15 to the end of video filename)
+	- Split the code (ch-player.js) into multiple files
 
 0.2	First public release (GitHub)
 
