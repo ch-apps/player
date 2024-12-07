@@ -101,6 +101,14 @@ function animate() {
 			c.stroke();
 		}
 
+		// draw the text message
+		/*
+		c.font = container.height*0.8 + "px sans-serif"; //"48px serif";
+		c.textBaseline = "middle";
+		c.fillStyle = 'rgba(255,0,0,0.75)';
+		c.fillText("Hello world", 10, container.height/2);
+		*/
+
 		//loop throug the beats array
 		//console.log("DEBUG: audioTrack " + actualTrack["audio"] + ", nearestBeatIndex " + nearestBeatIndex + ", actual time " + actualTime);
 		//console.log("DEBUG: NearestBeatIndex Time: " + mediaTracks["beat"][actualTrack["audio"]].beatData.video[nearestBeatIndex].time);

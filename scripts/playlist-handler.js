@@ -34,18 +34,25 @@ async function enqueuePlaylist(input) {
 		if (obj.beatFilesURL && obj.beatFilesURL[0]) {
 			for (var i = 0; i < obj.beatFilesURL.length; i++) {
 				// DO THE STUFF
-				//var textContentObj = await getFileContent(obj.beatFilesURL[i]);	//OPTION .json file 
-				var textContentObj = await readJSFile(obj.beatFilesURL[i]);	//OPTION .js file 
+				var extension = obj.beatFilesURL[i].split('.').pop();
+				if (extension === 'json') {
+					var textContentObjRaw = await getFileContent(obj.beatFilesURL[i]);	//OPTION .json file
+					var textContentObj = JSON.parse(textContentObjRaw);	//OPTION .json file
+					console.log("DEBUG: JSON read.");
+				} else if (extension === 'js') {
+					var textContentObj = await readJSFile(obj.beatFilesURL[i]);	//OPTION .js file
+					console.log("DEBUG: JS read.");
+				} else {
+					console.log("ERROR: Unknown BeatFile extension. Only .js or .json supported");
+					var textContentObj = null;
+				}
 				if (textContentObj) {
-					//var beatObj = JSON.parse(textContentObj);	//OPTION .json file 
-					//mediaTracks["beat"].push({name: obj.beatFilesURL[i], duration: beatObj.video[beatObj.video.length-1].time, source: obj.beatFilesURL[i], beatData: beatObj});		//OPTION .json file 
-					if (textContentObj.video) {	//OPTION .js file 
+					if (textContentObj.video) {	// Beat Data Timestamps included - DO NOT AUTOGENERATE 
 						mediaTracks["beat"].push({name: obj.beatFilesURL[i], duration: textContentObj.video[textContentObj.video.length-1].time, source: obj.beatFilesURL[i], beatData: textContentObj});	//OPTION .js file 
-					} else {	//OPTION .js file 
-						var autoGenBD = generateBeatData(textContentObj.tempoInBPM, textContentObj.notesPerBeat, textContentObj.firstNoteTime, textContentObj.songLength);	//OPTION .js file 
-						mediaTracks["beat"].push({name: obj.beatFilesURL[i], duration: textContentObj.songLength, source: obj.beatFilesURL[i], beatData: autoGenBD});	//OPTION .js file 
-					}	//OPTION .js file 
-					
+					} else { // Beat Data Timestamps not included - AUTOGENERATE them
+						var autoGenBD = generateBeatData(textContentObj.tempoInBPM, textContentObj.notesPerBeat, textContentObj.firstNoteTime, textContentObj.songLength);
+						mediaTracks["beat"].push({name: obj.beatFilesURL[i], duration: textContentObj.songLength, source: obj.beatFilesURL[i], beatData: autoGenBD});
+					}
 				}
 			}
 			refreshMediaPlayList(mediaTracks["beat"], "none", "none", "pllstInsrtBEATS", "beat", true);

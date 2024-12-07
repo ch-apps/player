@@ -1,6 +1,8 @@
-# Cock Hero Player
+# Cock Hero Player (v0.3.0)
 Browser based application that provides an universal platform for easy creation and playback of [Cock Hero](https://www.cockhero.info) custom games.
 It works very simple - in a similar way any other multimedia player does - just put your favorite video, music and beats into playlist and play them synchronized.
+## Screenshot
+![Cock Hero Player screenshot](/images/screenshot.jpg)
 ## Key Features
 * JavaScript enabled local HTML page (runable under CHROME, FIREFOX or EDGE)
 * Only browser is required, no need for other special SW installation (like DB, WebServer, ...)
@@ -14,5 +16,5 @@ It works very simple - in a similar way any other multimedia player does - just 
 1. Load your playlist or arrange your own game
    * How to load a playlist: click 2nd icon "Load Playlist" in TOP LEFT menu and open your playlist file. Sample playlist is included: *.\\AV_MEDIA\\IntroPlaylist.json*
    * How to arrange own game: click "+" icon in BOTTOM menu (video, audio and beat tracks) and add your media files to be played in sync
-## Screenshot
-![Cock Hero Player screenshot](/images/screenshot.jpg)
+## Documentation
+* Refere to [User's Manual](docs/MANUAL.md) for more detailed information about usage, advanced browser setup / installation, playlist & beat files structures, formats support, community shared games repositories etc.
