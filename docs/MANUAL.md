@@ -22,11 +22,11 @@ BeatFile keeps the configuration for the "beat-meter". It is linked to its audio
 #### BeatFile SIMPLE
 #### BeatFile with TIMESTAMPS and MESSAGES
 #### JSON vs. JS
-CH Player supports both formats.\ 
+CH Player supports both formats.\  
 JS format (.js) is regular javascript program, even though (in this specific case) it holds only assignement of DATA variable to the beat-data-object (DATA={...}).\ 
-JSON format (.json) stands for JavaScript Object Notation. JSON is a lightweight format for storing and transporting data. So it holds also the beat-data-object {...}, but not assigned already to javascrip variable as in case of JS.\ 
+JSON format (.json) stands for JavaScript Object Notation. JSON is a lightweight format for storing and transporting data. So it holds also the beat-data-object {...}, but not assigned already to javascrip variable as in case of JS.\  
 **The content of JS and JSON BeatFiles differs only in the initial string `DATA=` (present only in .js files), all the rest is the same.**\ 
-Why the two formats then? The reason is in the cross-origin restrictions (CORS). By default, browsers prevent web pages from accessing files on the local disk due to security concerns. When running CH Player from local disk with JSON BeatFiles (linked from Playlist) stored also locally - they won't be allowed to be read by the script because of CORS. And here comes the JS "work-around" as the easiest way to by-pass the issue (as the script / JS file could be read without any tweaking).\ 
+Why the two formats then? The reason is in the cross-origin restrictions (CORS). By default, browsers prevent web pages from accessing files on the local disk due to security concerns. When running CH Player from local disk with JSON BeatFiles (linked from Playlist) stored also locally - they won't be allowed to be read by the script because of CORS. And here comes the JS "work-around" as the easiest way to by-pass the issue (as the script / JS file could be read without any tweaking).\  
 There are also other ways to work around this:
 * temporarily disable CORS enforcement in your browser (easy, but not safe / recommended - remember to re-enable this setting once you’re back in on-line world)
 * run the player from a local web server. This avoids cross-origin restrictions entirely, but requires additional SW to install and run (secure, but might be quite complex)

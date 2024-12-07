@@ -13,6 +13,18 @@ function changeVolume(amount, id) {
     objectToChangeVolume.volume = amount;
 }
 
+function createTimeUpdateListener(endTime) {
+    return function onTimeUpdate(event) {
+        if (myvideo.currentTime >=  endTime) {
+            //forceSkipAudioToVideoSync = true;
+            //mediaNext('vdSRC', 'myvideo', 'video');
+            const endedEvent = new Event('ended');
+            this.dispatchEvent(endedEvent);
+            myvideo.removeEventListener('timeupdate', onTimeUpdate);
+        }
+    }
+}
+
 function videoStarted() {
     var myvideo = document.getElementById("myvideo");
     var myaudio = document.getElementById("myaudio");
@@ -27,14 +39,8 @@ function videoStarted() {
         }
     }
     if (params.has('stop')) {
-        myvideo.addEventListener("timeupdate", function(){
-            if (this.currentTime >=  Number(params.get('stop'))) {
-                //forceSkipAudioToVideoSync = true;
-                //mediaNext('vdSRC', 'myvideo', 'video');
-                const endedEvent = new Event('ended');
-                this.dispatchEvent(endedEvent);
-            }
-        });
+        const timeUpdateListener = createTimeUpdateListener(Number(params.get('stop')));
+        myvideo.addEventListener('timeupdate', timeUpdateListener);
    }
     //if(change_time_state){
     if (!forceSkipAudioToVideoSync) { //!forceSkipAudioToVideoSync

@@ -38,10 +38,8 @@ async function enqueuePlaylist(input) {
 				if (extension === 'json') {
 					var textContentObjRaw = await getFileContent(obj.beatFilesURL[i]);	//OPTION .json file
 					var textContentObj = JSON.parse(textContentObjRaw);	//OPTION .json file
-					console.log("DEBUG: JSON read.");
 				} else if (extension === 'js') {
 					var textContentObj = await readJSFile(obj.beatFilesURL[i]);	//OPTION .js file
-					console.log("DEBUG: JS read.");
 				} else {
 					console.log("ERROR: Unknown BeatFile extension. Only .js or .json supported");
 					var textContentObj = null;
