@@ -5,6 +5,7 @@
 
 var mediaTracks = ({video: [], audio: [], beat: []});
 var actualTrack = ({video: 0, audio: 0, beat: 0});
+let timeUpdateListener; // Declare a variable to hold the listener reference
 var DATA;
 
 // init the variables

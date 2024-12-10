@@ -14,7 +14,7 @@ function changeVolume(amount, id) {
 }
 
 function createTimeUpdateListener(endTime) {
-    return function onTimeUpdate(event) {
+    timeUpdateListener = function onTimeUpdate(event) {
         if (myvideo.currentTime >=  endTime) {
             //forceSkipAudioToVideoSync = true;
             //mediaNext('vdSRC', 'myvideo', 'video');
@@ -22,13 +22,17 @@ function createTimeUpdateListener(endTime) {
             this.dispatchEvent(endedEvent);
             myvideo.removeEventListener('timeupdate', onTimeUpdate);
         }
-    }
+    };
+    return timeUpdateListener;
 }
 
 function videoStarted() {
     var myvideo = document.getElementById("myvideo");
     var myaudio = document.getElementById("myaudio");
     // handle start-time and stop-time (if provided for the video)
+    if (timeUpdateListener) { // Remove previous stop-time event listener (if exist/was set and not removed by itself - e.g nextMedia was called before stop-time was reached)
+        myvideo.removeEventListener('timeupdate', timeUpdateListener);
+    }
     const [ , paramString ] = mediaTracks["video"][actualTrack["video"]].source.split( '?' );
     const params = new URLSearchParams( paramString ); // return type is Array of Strings
     var paramStart = 0;
