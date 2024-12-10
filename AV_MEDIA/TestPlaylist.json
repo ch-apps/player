@@ -1,5 +1,5 @@
 {
-"info": "<b>INTRO PLAYLIST</b></br>This is very simple introduction playlist. It demonstrates how easy it is to load whole CockHero game with multiple levels / sessions at once.",
+"info": "<b>INTRO PLAYLIST</b></br>This is very simple test playlist. It demonstrates the relative file path usage (to point the media files to be played).",
 "videoFilesURL": [
 	"./AV_MEDIA/VIDEO/test_video___FullHD_25fps_60sec_120BPM.mp4?start=0&stop=18",
 	"./AV_MEDIA/VIDEO/test_video___FullHD_25fps_60sec_120BPM.mp4?start=30&stop=48",

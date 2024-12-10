@@ -23,5 +23,6 @@ DATA={
         {"fromTime": 0.500, "toTime": 4.500, "message": "TEST MESSAGE #1"},
         {"fromTime": 5.500, "toTime": 9.500, "message": "TEST MESSAGE #2"},
         {"fromTime": 10.500, "toTime": 14.500, "message": "TEST MESSAGE #3"}
-    ]
+    ],
+    "downloadLink": "https://github.com/ch-apps/player/tree/main/AV_MEDIA/AUDIO/Test/BASS_120bpm_18sec.mp3"
 }
