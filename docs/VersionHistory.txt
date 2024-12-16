@@ -16,6 +16,7 @@ WISH-LIST
 	- Playlist validator (throws alert when file not found or unsupported extension)
 
 0.3.0	Video start/stop time support
+	- media (audio/video) buffering (next media is pre-loaded to minimize playback delay)
 	- Start-time and stop-time support for video in playlist files (enables to play only time-defined clips out of the full-length videos. Just add ?start=12&stop=15 to the end of video filename)
 	- Split the code (ch-player.js) into multiple files
 

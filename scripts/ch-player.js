@@ -3,8 +3,9 @@
  * Browser based application that provides an universal platform for easy creation and playback of Cock Hero custom games. 
  */
 
-var mediaTracks = ({video: [], audio: [], beat: []});
-var actualTrack = ({video: 0, audio: 0, beat: 0});
+var mediaTracks = ({ video: [], audio: [], beat: [] });
+var actualTrack = ({ video: 0, audio: 0, beat: 0 });
+var bufferedTrack = ({ video: 0, audio: 0, beat: 0 });
 let timeUpdateListener; // Declare a variable to hold the listener reference
 var DATA;
 
@@ -28,11 +29,11 @@ var container = {
 	y: 0,
 	width: canvas.width,
 	height: canvas.height,
-	lineWidth: canvas.height/5
+	lineWidth: canvas.height / 5
 };
 
 function notImplementedMessage() {
-  alert("This feature is not implemented yet.");
+	alert("This feature is not implemented yet.");
 }
 
 requestAnimationFrame(animate);

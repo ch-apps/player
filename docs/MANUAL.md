@@ -154,7 +154,8 @@ DATA={
 ```
 
 #### BeatFile with TIMESTAMPS and MESSAGES
-  * timestamps in `video` array as well as in `messages` array MUST BE SORTED (ascending) 
+  * timestamps in `video` array as well as in `messages` array MUST BE SORTED (ascending)
+  * this format is also used by [Beatmeter Generator](https://gitlab.com/SklaveDaniel/BeatmeterGenerator) - GUI tool to help you make/place the beats to the song. 
 
 ```
 {
