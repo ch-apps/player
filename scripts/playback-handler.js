@@ -52,7 +52,9 @@ function videoStarted() {
         myaudio.currentTime = (myvideo.currentTime - paramStart) - myaudio.duration * Math.floor(myvideo.currentTime / myaudio.duration);		// what if the video is longer then audio -> loop the audio then
         //console.log("DEBUG video time: " + myvideo.currentTime + ", audio time" + myaudio.currentTime);
         nearestBeatIndex = 0;
+        nearestMessageIndex = 0;
         clearTimeout(scheduledBeatSound);
+        // Locate Beat Index
         if (mediaTracks["beat"] && mediaTracks["beat"].length > actualTrack["audio"]) {
             actualTrack["beat"] = actualTrack["audio"]
             while (mediaTracks["beat"][actualTrack["audio"]].beatData.video[nearestBeatIndex].time < myaudio.currentTime + latency && nearestBeatIndex < mediaTracks["beat"][actualTrack["audio"]].beatData.video.length - 1) {
@@ -61,11 +63,18 @@ function videoStarted() {
             scheduledBeatSound = setTimeout(playBeatSound, (mediaTracks["beat"][actualTrack["audio"]].beatData.video[nearestBeatIndex].time - (myaudio.currentTime + latency)) * 1000);
         }
         allBeatsPlayed = false;
+        // Locate Message Index
+        if (mediaTracks["beat"] && mediaTracks["beat"].length > actualTrack["audio"] && mediaTracks["beat"][actualTrack["audio"]].beatData.messages.length > 0) {
+            while (mediaTracks["beat"][actualTrack["audio"]].beatData.messages[nearestMessageIndex].fromTime < myaudio.currentTime + latency && nearestMessageIndex < mediaTracks["beat"][actualTrack["audio"]].beatData.messages.length - 1) {
+                nearestMessageIndex++;
+            }
+        }
         //change_time_state = false;
         //}
     }
     myaudio.play();
     forceSkipAudioToVideoSync = false;	//reset to initial valu (i.e. to sync audio to video
+
 }
 
 function videoPaused() {
@@ -77,6 +86,7 @@ function videoPaused() {
 }
 
 function mediaNext(sourceElementId, mediaElementID, mediaType) {
+
     document.getElementById(mediaElementID).src = document.getElementById(mediaElementID + "Buffer").src;
     document.getElementById(mediaElementID).play();
     actualTrack[mediaType] = bufferedTrack[mediaType];
@@ -84,6 +94,7 @@ function mediaNext(sourceElementId, mediaElementID, mediaType) {
     preloadBufferVideo(mediaElementID + "Buffer", mediaTracks[mediaType][bufferedTrack[mediaType]].source);
     if (mediaType === 'audio') {
         nearestBeatIndex = 0;
+        nearestMessageIndex = 0;
         allBeatsPlayed = false;
     }
     //setMediaSource (sourceElementId, mediaElementID, mediaTracks[mediaType][actualTrack[mediaType]].source, true);
@@ -95,6 +106,7 @@ function mediaSpec(trackNumber, sourceElementId, mediaElementID, playlistElement
         actualTrack[mediaType] = trackNumber;
         if (mediaType === 'audio') {
             nearestBeatIndex = 0;
+            nearestMessageIndex = 0;
         }
         setMediaSource(sourceElementId, mediaElementID, mediaTracks[mediaType][actualTrack[mediaType]].source, startToPlay);
         bufferedTrack[mediaType] = getNextTrackIndex(mediaType);

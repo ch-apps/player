@@ -1,6 +1,7 @@
 WISH-LIST
 	- Advanced looping and chaining logic (video drives timing/looping, audio drives timing/looping, independent playback)
 	- Security and Error/ Exception handling and source code clean-up
+	- Playlist validator (throws alert when file not found or unsupported extension)
 	- Add more content
  		- Documentation
 			- Usage
@@ -13,7 +14,6 @@ WISH-LIST
 0.3.1	Displaying messages
 	- Display TEXT MESSAGES together with beats as a part of beatmeter (e.g. pattern change announcement, instructions. etc.)
 	- Both JSON and JS files formats supported as BeatFiles. 
-	- Playlist validator (throws alert when file not found or unsupported extension)
 
 0.3.0	Video start/stop time support
 	- media (audio/video) buffering (next media is pre-loaded to minimize playback delay)
